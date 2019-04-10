@@ -138,11 +138,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Appointment.cs" />
+    <Compile Include="Models\AppointmentModel.cs" />
     <Compile Include="Models\Dentist.cs" />
+    <Compile Include="Models\DentistLogin.cs" />
+    <Compile Include="Models\DentistLoginModel.cs" />
     <Compile Include="Models\DentistModel.cs" />
+    <Compile Include="Models\ManualAppointment.cs" />
     <Compile Include="Models\Patient.cs" />
-    <Compile Include="Models\PatientModel.cs" />
-    <Compile Include="Models\PatientModelLogin.cs" />
+    <Compile Include="Models\PatientLogin.cs" />
+    <Compile Include="Models\PatientLoginModel.cs" />
+    <Compile Include="Models\PatientRegister.cs" />
+    <Compile Include="Models\PatientRegisterModel.cs" />
+    <Compile Include="Models\Prescription.cs" />
+    <Compile Include="Models\PrescriptionModel.cs" />
+    <Compile Include="Models\Schedule.cs" />
+    <Compile Include="Models\ScheduleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -587,6 +598,16 @@
     <Content Include="Views\Home\DentistLogin.cshtml" />
     <Content Include="Views\Home\PatientLogin.cshtml" />
     <Content Include="Views\Home\DentistPanel.cshtml" />
+    <Content Include="Views\Home\Appointment.cshtml" />
+    <Content Include="Views\Home\PatientPanel.cshtml" />
+    <Content Include="Views\Home\PatientRegister.cshtml" />
+    <Content Include="Views\Home\SelectDentist.cshtml" />
+    <Content Include="Views\Home\SelectedAppointmentList.cshtml" />
+    <Content Include="Views\Home\AppointmentList.cshtml" />
+    <Content Include="Views\Home\TakeAppointment.cshtml" />
+    <Content Include="Views\Home\MyAppointments.cshtml" />
+    <Content Include="Views\Home\SeeAppointments.cshtml" />
+    <Content Include="Views\Home\CreatePrescription.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

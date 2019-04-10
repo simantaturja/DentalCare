@@ -11,6 +11,8 @@ namespace DentalClinicReservationAndManagementSystem.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
+        
+        
 
         [Required]
         [StringLength(50)]
@@ -46,5 +48,7 @@ namespace DentalClinicReservationAndManagementSystem.Models
         public int isVerfied { get; set; }
 
         public int isAvailable { get; set; }
+
+        
     }
 }

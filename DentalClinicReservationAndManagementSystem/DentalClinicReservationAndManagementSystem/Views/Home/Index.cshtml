@@ -2,103 +2,11 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using DentalClinicReservationAndManagementSystem.Models;
 @section Scripts {
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 }
-
-<section class="ftco-intro">
-    <div class="container">
-        <div class="row no-gutters">
-            <div class="col-md-3 color-1 p-4">
-                <h3 class="mb-4">Emergency Cases</h3>
-                <p>A small river named Duden flows by their place and supplies</p>
-                <span class="phone-number">+ (123) 456 7890</span>
-            </div>
-            <div class="col-md-3 color-2 p-4">
-                <h3 class="mb-4">Opening Hours</h3>
-                <p class="openinghours d-flex">
-                    <span>Monday - Friday</span>
-                    <span>8:00 - 19:00</span>
-                </p>
-                <p class="openinghours d-flex">
-                    <span>Saturday</span>
-                    <span>10:00 - 17:00</span>
-                </p>
-                <p class="openinghours d-flex">
-                    <span>Sunday</span>
-                    <span>10:00 - 16:00</span>
-                </p>
-            </div>
-            <div class="col-md-6 color-3 p-4">
-                <h3 class="mb-2">Make an Appointment</h3>
-                <form action="#" class="appointment-form">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <div class="select-wrap">
-                                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                    <select name="" id="" class="form-control">
-                                        <option value="">Department</option>
-                                        <option value="">Teeth Whitening</option>
-                                        <option value="">Teeth CLeaning</option>
-                                        <option value="">Quality Brackets</option>
-                                        <option value="">Modern Anesthetic</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <div class="select-wrap">
-                                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                    <select name="" id="" class="form-control">
-                                        <option value="">Dentist Name</option>
-                                        <option value="">John Smith</option>
-                                        <option value="">David Smith</option>
-                                        <option value="">Henry Lucas</option>
-                                        <option value="">Max Jr.</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <div class="icon"><span class="icon-paper-plane"></span></div>
-                                <input type="text" class="form-control" id="appointment_email" placeholder="Email">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <div class="icon"><span class="ion-ios-calendar"></span></div>
-                                <input type="text" class="form-control appointment_date" placeholder="Available Date">
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <div class="icon"><span class="ion-ios-clock"></span></div>
-                                <input type="text" class="form-control appointment_time" placeholder="Available Time">
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <div class="icon"><span class="icon-phone2"></span></div>
-                                <input type="text" class="form-control" id="phone" placeholder="Phone">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="submit" value="Make an Appointment" class="btn btn-primary">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
 
 <section class="ftco-section ftco-services">
     <div class="container">
@@ -198,7 +106,6 @@
     </div>
 </section>
 
-
 <section class="ftco-section">
     <div class="container">
         <div class="row justify-content-center mb-5 pb-5">
@@ -208,78 +115,35 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-3 col-md-6 d-flex mb-sm-4 ftco-animate">
-                <div class="staff">
-                    <div class="img mb-4" style="background-image: url(../../Content/images/person_5.jpg);"></div>
-                    <div class="info text-center">
-                        <h3><a href="teacher-single.html">Tom Smith</a></h3>
-                        <span class="position">Dentist</span>
-                        <div class="text">
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia</p>
-                            <ul class="ftco-social">
-                                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-                            </ul>
+
+            @{
+                    
+                    foreach (Dentist d in ViewBag.dentistList)
+                    {
+                    <div class="col-lg-3 col-md-6 d-flex mb-sm-4 ftco-animate">
+                        <div class="staff">
+                            <div class="img mb-4" style="background-image: url(../../Content/images/person_5.jpg);"></div>
+                            <div class="info text-center">
+                                <h3><a href="teacher-single.html">@d.name</a></h3>
+                                <span class="position">Dentist</span>
+                                <div class="text">
+                                    <p>@d.institute</p>
+                                    <ul class="ftco-social">
+                                        <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                                        <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                                        <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                                        <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 d-flex mb-sm-4 ftco-animate">
-                <div class="staff">
-                    <div class="img mb-4" style="background-image: url(../../Content/images/person_6.jpg);"></div>
-                    <div class="info text-center">
-                        <h3><a href="teacher-single.html">Mark Wilson</a></h3>
-                        <span class="position">Dentist</span>
-                        <div class="text">
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia</p>
-                            <ul class="ftco-social">
-                                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 d-flex mb-sm-4 ftco-animate">
-                <div class="staff">
-                    <div class="img mb-4" style="background-image: url(../../Content/images/person_7.jpg);"></div>
-                    <div class="info text-center">
-                        <h3><a href="teacher-single.html">Patrick Jacobson</a></h3>
-                        <span class="position">Dentist</span>
-                        <div class="text">
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia</p>
-                            <ul class="ftco-social">
-                                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 d-flex mb-sm-4 ftco-animate">
-                <div class="staff">
-                    <div class="img mb-4" style="background-image: url(../../Content/images/person_8.jpg);"></div>
-                    <div class="info text-center">
-                        <h3><a href="teacher-single.html">Ivan Dorchsner</a></h3>
-                        <span class="position">System Analyst</span>
-                        <div class="text">
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia</p>
-                            <ul class="ftco-social">
-                                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    
+                }
+            }
+
+
+            
         </div>
         <div class="row  mt-5 justify-conten-center">
             <div class="col-md-8 ftco-animate">
@@ -288,7 +152,6 @@
         </div>
     </div>
 </section>
-
 <section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(../../Content/images/bg_1.jpg);" data-stellar-background-ratio="0.5">
     <div class="container">
         <div class="row d-flex align-items-center">
@@ -337,7 +200,6 @@
         </div>
     </div>
 </section>
-
 <section class="ftco-section">
     <div class="container">
         <div class="row justify-content-center mb-5 pb-5">
@@ -414,7 +276,6 @@
         </div>
     </div>
 </section>
-
 <section class="ftco-section-parallax">
     <div class="parallax-img d-flex align-items-center">
         <div class="container">
@@ -437,7 +298,6 @@
         </div>
     </div>
 </section>
-
 <section class="ftco-section testimony-section bg-light">
     <div class="container">
         <div class="row justify-content-center mb-5 pb-3">
@@ -524,7 +384,6 @@
         </div>
     </div>
 </section>
-
 <section class="ftco-gallery">
     <div class="container-wrap">
         <div class="row no-gutters">
@@ -559,7 +418,6 @@
         </div>
     </div>
 </section>
-
 <section class="ftco-section">
     <div class="container">
         <div class="row justify-content-center mb-5 pb-3">
@@ -620,7 +478,6 @@
         </div>
     </div>
 </section>
-
 <section class="ftco-quote">
     <div class="container">
         <div class="row">
@@ -679,9 +536,7 @@
         </div>
     </div>
 </section>
-
 <div id="map"></div>
-
 <footer class="ftco-footer ftco-bg-dark ftco-section">
     <div class="container">
         <div class="row mb-5">
@@ -750,7 +605,6 @@
         </div>
         <div class="row">
             <div class="col-md-12 text-center">
-
                 <p>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     Copyright &copy;
@@ -761,4 +615,3 @@
         </div>
     </div>
 </footer>
-

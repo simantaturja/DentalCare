@@ -1,4 +1,4 @@
-﻿@model DentalClinicReservationAndManagementSystem.Models.Dentist
+﻿@model DentalClinicReservationAndManagementSystem.Models.PatientLogin
 
 @{
     ViewBag.Title = "PatientLogin";
@@ -25,7 +25,7 @@
 </head>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-primary" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="index.html">Dental <span>Care</span></a>
+        <a class="navbar-brand" href="@Html.ActionLink("Home", "Index", "Home")">Dental <span>Care</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
@@ -50,7 +50,7 @@
             <div class="card card-signin my-5">
                 <div class="card-body">
 
-                    @using (Html.BeginForm())
+                    @using (Html.BeginForm("PatientLogin","Home",FormMethod.Post))
                     {
                         @Html.AntiForgeryToken()
                         <h5 class="card-title text-center">Patient's Login</h5>
@@ -61,21 +61,18 @@
                                 @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
                             </div>
-
                             <div class="form-label-group">
                                 <label>password</label><br />
                                 @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
                             </div>
-
-                            <div class="custom-control custom-checkbox mb-3">
-                                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                <label class="custom-control-label" for="customCheck1">Remember password</label>
+                            <div class="form-label-group text-danger">
+                                <label>@Html.DisplayFor(model => model.LoginErrorMessage)</label>
                             </div>
+                            <br /> <br />
                             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
                             <hr class="my-4">
-                            <a href="/Home/Index" class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i>Create New Account</a>
-
+                            <a href="/Home/PatientRegister" class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i>Create New Account</a>
                         </form>
                     }
                 </div>

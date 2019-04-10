@@ -1,0 +1,152 @@
+﻿@model DentalClinicReservationAndManagementSystem.Models.Appointment
+@using DentalClinicReservationAndManagementSystem.Models
+@{
+    ViewBag.Title = "TakeAppointment";
+    Layout = null;
+}
+
+
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="~/Content/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="~/Content/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+        Dentist Panel
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <!-- CSS Files -->
+    <link href="~/Content/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="~/Content/demo/demo.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="@Url.Content("../../Content/css/open-iconic-bootstrap.min.css")">
+    <link rel="stylesheet" href="@Url.Content("../../Content/css/animate.css")">
+    <link rel="stylesheet" href="@Url.Content("../../Content/css/owl.carousel.min.css")">
+    <link rel="stylesheet" href="@Url.Content("../../Content/css/owl.theme.default.min.css")">
+    <link rel="stylesheet" href="@Url.Content("../../Content/css/magnific-popup.css")">
+    <link rel="stylesheet" href="@Url.Content("../../Content/css/aos.css")">
+    <link rel="stylesheet" href="@Url.Content("../../Content/css/ionicons.min.css")">
+    <link rel="stylesheet" href="@Url.Content("../../Content/css/bootstrap-datepicker.css")">
+    <link rel="stylesheet" href="@Url.Content("../../Content/css/jquery.timepicker.css")">
+    <link rel="stylesheet" href="@Url.Content("../../Content/css/flaticon.css")">
+    <link rel="stylesheet" href="@Url.Content("../../Content/css/icomoon.css")">
+    <link rel="stylesheet" href="@Url.Content("../../Content/css/style.css")">
+</head>
+<body class="">
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-primary" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Dental <span>Care</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item nav-link"> @Html.ActionLink("Home", "Index", "Home", new { Style = "color:White" })</li>
+                    <li class="nav-item nav-link"> @Html.ActionLink("About", "About", "Home", new { Style = "color:White" })</li>
+                    <li class="nav-item nav-link"> @Html.ActionLink("Services", "Services", "Home", new { Style = "color:White" })</li>
+                    <li class="nav-item nav-link"> @Html.ActionLink("Dentists", "Dentists", "Home", new { Style = "color:White" })</li>
+                    <li class="nav-item cta nav-link"> @Html.ActionLink("Make an Appointment", "TakeAppointment", "Home", new { Style = "color:White" })</li>
+                    <li class="nav-item cta nav-link"> @Html.ActionLink("Logout", "Logout", "Home", new { Style = "color:White" })</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+         
+                       
+                <div class="form-horizontal">
+                    <h5 class="card-title text-center">New Appointment</h5>
+                    @using (Html.BeginForm("TakeAppointment", "Home", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                    <form class="form-signin">
+                        <div class="form-label-group">
+                            <label>Dentist ID</label><br />
+                            @Html.EditorFor(model => model.dentist_id, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.dentist_id, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-label-group">
+                            <label>Patient ID</label><br />
+                            @Html.EditorFor(model => model.patient_id, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="form-label-group">
+                            <label>Time</label><br />
+                            @Html.EditorFor(model => model.datetime, new { htmlAttributes = new { @class = "form-control" } })
+                            <br />
+                            <div class="text-danger">@ViewBag.Message2</div>
+                        </div>
+                        <a href="/Home/SeeAppointments" class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i>Check Dentist Appointments</a>
+
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Create">Take Appointment</button>
+                        <hr class="my-4">
+                    </form>
+                    }
+                </div>
+                           </div>
+
+                            <div class="col-md-3">
+                                Your ID is @Session["LoggedPatientID"]
+                                <div class="container-fluid">
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Dentist ID</th>
+                                                <th>Dentist Name</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (Dentist dentist in ViewBag.appointmentList2)
+                                            {
+                                                <tr>
+                                                    <td>@dentist.Id</td>
+                                                    <td>@dentist.name</td>
+
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        
+                       
+                        
+
+                    </div>
+                
+                    </div>
+    
+</body>
+
+@section Scripts {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="../../Content/js/jquery.min.js"></script>
+    <script src="../../Content/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="../../Content/js/popper.min.js"></script>
+    <script src="../../Content/js/bootstrap.min.js"></script>
+    <script src="../../Content/js/jquery.easing.1.3.js"></script>
+    <script src="../../Content/js/jquery.waypoints.min.js"></script>
+    <script src="../../Content/js/jquery.stellar.min.js"></script>
+    <script src="../../Content/js/owl.carousel.min.js"></script>
+    <script src="../../Content/js/jquery.magnific-popup.min.js"></script>
+    <script src="../../Content/js/aos.js"></script>
+    <script src="../../Content/js/jquery.animateNumber.min.js"></script>
+    <script src="../../Content/js/bootstrap-datepicker.js"></script>
+    <script src="../../Content/js/jquery.timepicker.min.js"></script>
+    <script src="../../Content/js/scrollax.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="../../Content/js/google-map.js"></script>
+    <script src="../../Content/js/main.js"></script>
+}
+
